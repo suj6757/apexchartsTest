@@ -92,7 +92,7 @@ function Bar(props) {
                 grid: {
                     yaxis: {
                         lines: {
-                        show: false
+                            show: false
                         }
                     }
                 },

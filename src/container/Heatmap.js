@@ -2,78 +2,100 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { HeatmapChartOption } from '../component/config';
 
-function generateData(count, yrange) {
-    var series = [];
-
-    for(var i = 0; i < count; i++) {
-        var x = (i + 1).toString();
-        var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-    
-        series.push({
-            x: x,
-            y: y
-        });
-    }
-
-    return series;
-}
-
 function Heatmap(props) {
     const [data, setData] = React.useState(HeatmapChartOption);
-    const [seriesData, setSeriesData] = React.useState([]);
-    const [categoriesData, setCategoriesData] = React.useState([]);
 
     React.useEffect(() => {
-        setSeriesData([
+        let resHeatMapData = [
             {
-                name: 'Jan',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Feb',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Mar',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Apr',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'May',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Jun',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Jul',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Aug',
-                data: generateData(20, { min: -30, max: 55 })
-            },
-            {
-                name: 'Sep',
-                data: generateData(20, { min: -30, max: 55 })
+                "Data": [
+                    {
+                        "Date": "4/1",
+                        "Value": 0.97
+                    }, {
+                        "Date": "4/2",
+                        "Value": 0.71
+                    }, {
+                        "Date": "4/3",
+                        "Value": 0.8
+                    }, {
+                        "Date": "4/4",
+                        "Value": 0.5
+                    }, {
+                        "Date": "4/5",
+                        "Value": 0.65
+                    }
+                ],
+                "Channel_Category": "Search Volume",
+                "Channel": "Naver"
+            }, {
+                "Data": [
+                    {
+                        "Date": "4/1",
+                        "Value": 0.97
+                    }, {
+                        "Date": "4/2",
+                        "Value": 0.71
+                    }, {
+                        "Date": "4/3",
+                        "Value": 0.8
+                    }, {
+                        "Date": "4/4",
+                        "Value": 0.5
+                    }, {
+                        "Date": "4/5",
+                        "Value": 0.65
+                    }
+                ],
+                "Channel_Category": "Social",
+                "Channel": "Naver Blog"
+            }, {
+                "Data": [
+                    {
+                        "Date": "4/1",
+                        "Value": 0.97
+                    }, {
+                        "Date": "4/2",
+                        "Value": 0.71
+                    }, {
+                        "Date": "4/3",
+                        "Value": 0.8
+                    }, {
+                        "Date": "4/4",
+                        "Value": 0.5
+                    }, {
+                        "Date": "4/5",
+                        "Value": 0.65
+                    }
+                ],
+                "Channel_Category": "E-Commerce",
+                "Channel": "Coupang"
             }
-        ]);
-        
-        //setCategoriesData(['10대', '20대', '30대', '40대', '50대']);
-    }, []);
-
+        ]
     
-    React.useEffect(() => {
+        let seriesData = [];
+    
+        resHeatMapData.map((res, i) => {
+            let dataArray = [];
+
+            res.Data.map((res, j) => {
+                dataArray.push({
+                    x: res.Date,
+                    y: res.Value
+                });
+            });
+
+            seriesData.push({
+                name: res.Channel,
+                data: dataArray
+            });
+        });
+        
         setData({
             ...data,
             series: seriesData
         });
-    }, [seriesData, categoriesData]);
-    
+    }, []);
    
     return (
         <>

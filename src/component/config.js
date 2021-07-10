@@ -75,6 +75,9 @@ export const HeatmapChartOption = {
         chart: {
             height: 350,
             type: 'heatmap',
+            toolbar: {
+                show: false
+            }
         },
         plotOptions: {
             heatmap: {
@@ -83,26 +86,32 @@ export const HeatmapChartOption = {
                 useFillColorAsStroke: true,
                 colorScale: {
                     ranges: [{
-                        from: -30,
-                        to: 5,
-                        name: 'low',
+                        from: 0.00,
+                        to: 0.19,
+                        name: 'min',
                         color: '#00A100'
                     },
                     {
-                        from: 6,
-                        to: 20,
-                        name: 'medium',
-                        color: '#128FD9'
+                        from: 0.20,
+                        to: 0.39,
+                        name: 'low',
+                        color: '#a6d082'
                     },
                     {
-                        from: 21,
-                        to: 45,
+                        from: 0.40,
+                        to: 0.59,
+                        name: 'medium',
+                        color: '#ffea89'
+                    },
+                    {
+                        from: 0.60,
+                        to: 0.79,
                         name: 'high',
                         color: '#FFB200'
                     },
                     {
-                        from: 46,
-                        to: 55,
+                        from: 0.80,
+                        to: 1.00,
                         name: 'extreme',
                         color: '#FF0000'
                     }
@@ -111,14 +120,41 @@ export const HeatmapChartOption = {
             }
         },
         dataLabels: {
-            enabled: false
+            enabled: false,
         },
         stroke: {
             width: 1
         },
-        title: {
-            text: 'HeatMap Chart with Color Range'
+        xaxis: {
+            type: 'category',
+            position: 'top',
+            tickPlacement: 'on',
+            axisTicks: {
+                show: false,
+            }
         },
+        yaxis: {
+            reversed: true
+        },
+        legend: {
+            show:false
+        },
+        grid: {
+            show:true,
+            borderColor: '#646464',
+            strokeDashArray: 1,
+            position: 'front',
+            xaxis: {
+                lines: {
+                    show: true
+                }
+            },   
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            }
+        }
     },
     series: []
 };
