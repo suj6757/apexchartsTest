@@ -8,8 +8,44 @@ function Line(props) {
     const [categoriesData, setCategoriesData] = React.useState([]);
 
     React.useEffect(() => {
-        setSeriesData(['1', '2', '3', '4', '2']);
-        setCategoriesData(['10대', '20대', '30대', '40대', '50대']);
+        var response = {
+             "LineData": [
+                {
+                    "Date": "2021-05-01",
+                    "Value": 0.7
+                }
+                , 
+                {
+                    "Date": "2021-05-02",
+                    "Value": 0.71
+                }
+                , 
+                {
+                    "Date": "2021-05-03",
+                    "Value": 0.3
+                }
+                ,
+                {
+                    "Date": "2021-05-04",
+                    "Value": 0.51
+                }
+                , 
+                {
+                    "Date": "2021-05-05",
+                    "Value": 0.53
+                }
+            ]
+        };
+
+        let seriesArr = [];
+        let categoriesArr = [];
+        response.LineData.map((data) => {
+            seriesArr.push(data.Value);
+            categoriesArr.push(Number(data.Date.substr(8, 2)));
+        })
+        
+        setSeriesData(seriesArr);
+        setCategoriesData(categoriesArr);
     }, []);
 
     React.useEffect(() => {
@@ -24,7 +60,7 @@ function Line(props) {
                 },
             },
             series: [{
-                name : '인원수',
+                name : 'total',
                 data : seriesData
             }]
         });
