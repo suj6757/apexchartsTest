@@ -5,7 +5,7 @@ export const LineChartOption = {
             height: 350,
             type: 'line',
             dropShadow: {
-                enabled: true,
+                enabled: false,
                 color: '#000',
                 top: 18,
                 left: 7,
@@ -16,9 +16,17 @@ export const LineChartOption = {
                 show: false
             }
         },
-        //colors: [],
+        colors : ['#868686'],
         dataLabels: {
             enabled: true,
+            formatter: function(val, opts) {
+                return val;
+            },
+            offsetX: 0,
+            offsetY: -10,
+            background: {
+                enabled: false
+            }
         },
         stroke: {
             curve: 'smooth'
@@ -28,14 +36,18 @@ export const LineChartOption = {
             align: 'left'
         },
         grid: {
+            /*
             borderColor: '#e7e7e7',
             row: {
                 colors: ['#f3f3f3', 'transparent'],
                 opacity: 0.5
             },
+            */
         },
         markers: {
-            size: 1
+            size: 1,
+            strokeColors: '#fff',
+            strokeWidth: 5
         },
         xaxis: {
             categories: [],
@@ -63,11 +75,12 @@ export const LineChartOption = {
 };
 
 
-//라인
+//바
 export const BarChartOption = {
     options: {},
     series: []
 };
+
 
 //히트맵
 export const HeatmapChartOption = {
