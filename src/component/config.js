@@ -4,6 +4,9 @@ export const LineChartOption = {
         chart: {
             height: 350,
             type: 'line',
+            zoom: {
+                enabled: false
+            },
             dropShadow: {
                 enabled: false,
                 color: '#000',
@@ -36,18 +39,16 @@ export const LineChartOption = {
             align: 'left'
         },
         grid: {
-            /*
-            borderColor: '#e7e7e7',
-            row: {
-                colors: ['#f3f3f3', 'transparent'],
-                opacity: 0.5
-            },
-            */
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            }
         },
         markers: {
-            size: 1,
+            size: [2, 3],
             strokeColors: '#fff',
-            strokeWidth: 5
+            strokeWidth: 4
         },
         xaxis: {
             categories: [],
@@ -59,16 +60,12 @@ export const LineChartOption = {
             title: {
                 text: ''
             },
-            //min: 5,
-            //max: 40,
             show : false
         },
         legend: {
             position: 'top',
             horizontalAlign: 'right',
-            floating: true,
-            offsetY: -25,
-            offsetX: -5
+            floating: true
         }
     },
     series: []
