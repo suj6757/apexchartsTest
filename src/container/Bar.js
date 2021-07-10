@@ -54,7 +54,10 @@ function Bar(props) {
             options: {
                 chart: {
                     type: 'bar',
-                    height: 350
+                    height: 350,
+                    toolbar: {
+                        show: false
+                    }
                 },
                 plotOptions: {
                     bar: {
