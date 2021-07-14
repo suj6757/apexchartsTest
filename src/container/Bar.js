@@ -1,56 +1,49 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { BarChartOption } from '../component/config';
 
 function Bar(props) {
     const [data, setData] = React.useState(BarChartOption);
-    const [charData, setCharData] = useState({});
-
-    // React.useEffect(() => {
-    //     setSeriesData(['1', '2', '3', '4', '2']);
-    //     setCategoriesData(['10대', '20대', '30대', '40대', '50대']);
-    // }, []);
 
     React.useEffect(() => {
         // 추후 axios에서 받아오게 변경 예정
-        let resBarDataData = [
+        let response = [
             {
                 "Date": "2021-05-01",
                 "Value": 0.1
-            }, {
+            }
+            , 
+            {
                 "Date": "2021-05-02",
                 "Value": 0.1
-            }, {
+            }
+            ,
+            {
                 "Date": "2021-05-03",
                 "Value": 0.3
-            }, {
+            }
+            , 
+            {
                 "Date": "2021-05-04",
                 "Value": -0.1
-            }, {
+            }
+            , 
+            {
                 "Date": "2021-05-05",
                 "Value": -0.2
             }
         ];
 
-        setCharData(resBarDataData);
-
         let seriesData = [];
         let categoriesData = [];
-
-        resBarDataData.map((res) => {
-            seriesData.push(res.Value);
-            categoriesData.push(res.Date.slice(-2));
+        let xArr = [];
+        response.map((data) => {
+            seriesData.push(data.Value);
+            categoriesData.push(Number(data.Date.slice(-2)));
+            xArr.push(data.Date);
         });
 
         setData({
-            series: [{
-                name: 'Cash Flow',
-                // data: [1.45, 5.42, 5.9, -0.42, -12.6, -18.1, -18.2, -14.16, -11.1, -6.09, 0.34, 3.88, 13.07,
-                //   5.8, 2, 7.37, 8.1, 13.57, 15.75, 17.1, 19.8, -27.03, -54.4, -47.2, -43.3, -18.6, -
-                //   48.6, -41.1, -39.6, -37.6, -29.4
-                // ]
-                data: seriesData
-            }],
             options: {
                 chart: {
                     type: 'bar',
@@ -112,7 +105,6 @@ function Bar(props) {
                 },
                 yaxis: {
                     show: false,
-                    //show: true,
                     max: function (val) {
                         return val + 0.1;
                     },
@@ -123,14 +115,6 @@ function Bar(props) {
                 },
                 xaxis: {
                     type: 'category',
-                    // categories: [
-                    //   '01', '02', '03', '04', '05', '06',
-                    //   '07', '08', '09', '10', '11', '12',
-                    //   '13', '14', '15', '16', '17', '18',
-                    //   '19', '20', '21', '22', '23', '24',
-                    //   '25', '26', '27', '28', '29', '30',
-                    //   '31'
-                    // ],
                     categories: categoriesData,
                     axisBorder: {
                         show: false
@@ -138,8 +122,19 @@ function Bar(props) {
                     axisTicks: {
                         show: false,
                     }
-                }
-            }
+                },
+                tooltip: {
+                    x: {
+                        formatter: function(value) {
+                            return xArr[value - 1];
+                        }
+                    }
+                },
+            },
+            series: [{
+                name: 'Cash Flow',
+                data: seriesData
+            }]
         });
     }, []);
 
