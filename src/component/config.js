@@ -112,3 +112,57 @@ export const HeatmapChartOption = {
     },
     series: []
 };
+
+
+//브러쉬
+export const BrushChartOption = {
+    detailOptions: {
+        chart: {
+            id: 'detail',
+            type: 'line',
+            height: 230,
+            toolbar: {
+                show: false
+            }
+        },
+        grid: {
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            }
+        },
+        xaxis: {
+            categories: []
+        },
+        yaxis: {
+            show: false
+        }
+    },
+    detailSeries: [],
+    simpleOptions: {
+        chart: {
+            id: 'simple',
+            height: 130,
+            type: 'line',
+            brush:{
+                target: 'detail',
+                enabled: true
+            }
+        },
+        grid: {
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            }
+        },
+        xaxis: {
+            categories: []
+        },
+        yaxis: {
+            show: false
+        }
+    },
+    simpleSeries: []
+};
