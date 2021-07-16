@@ -18,7 +18,18 @@ export const LineChartOption = {
 
 //바
 export const BarChartOption = {
-    options: {},
+    options: {
+        grid: {
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            }
+        },
+        yaxis: {
+            show : false
+        }
+    },
     series: []
 };
 
