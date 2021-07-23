@@ -205,6 +205,13 @@ function Brush(props) {
                             max: 3
                         }
                     },
+                    events: {
+                        selection: function(chartContext, { xaxis, yaxis }) {
+                          console.log(chartContext);
+                          console.log(xaxis);
+                          console.log(yaxis);
+                        }
+                    }
                 },
                 colors: ['#008FFB'],
                 grid: {
@@ -233,11 +240,11 @@ function Brush(props) {
 
     return (
         <>
-            <div id="detail">
-                <ReactApexChart options={data.detailOptions} series={data.detailSeries} type="line" height={230} />
-            </div>
             <div id="simple">
                 <ReactApexChart options={data.simpleOptions} series={data.simpleSeries} type="line" height={130} />
+            </div>
+            <div id="detail">
+                <ReactApexChart options={data.detailOptions} series={data.detailSeries} type="line" height={230} />
             </div>
         </>
     );
